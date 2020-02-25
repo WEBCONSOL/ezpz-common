@@ -1,0 +1,882 @@
+{
+  "assets": {
+    "folderList": {
+      "uri": "/folder/list",
+      "method": "get"
+    },
+    "folderInfoById": {
+      "uri": "/folder/info/{id}",
+      "method": "get"
+    },
+    "folderParentById": {
+      "uri": "/folder/parent/{id}",
+      "method": "get"
+    },
+    "folderForm": {
+      "uri": "/folder/form",
+      "method": "post"
+    },
+    "folderDelete": {
+      "uri": "/folder/delete",
+      "method": "delete"
+    },
+    "fileList": {
+      "uri": "/file/list",
+      "method": "get"
+    },
+    "fileInfoById": {
+      "uri": "/file/info/{id}",
+      "method": "get"
+    },
+    "fileParentById": {
+      "uri": "/file/parent/{id}",
+      "method": "get"
+    },
+    "fileForm": {
+      "uri": "/file/form",
+      "method": "post"
+    },
+    "fileDelete": {
+      "uri": "/file/delete",
+      "method": "delete"
+    },
+    "digitalAssetList": {
+      "uri": "/digitalasset/list",
+      "method": "get"
+    },
+    "digitalAssetInfoById": {
+      "uri": "/digitalasset/info/{id}",
+      "method": "get"
+    },
+    "digitalAssetsListByParentId": {
+      "uri": "/digitalasset/list/byparentid/{id}",
+      "method": "get"
+    },
+    "digitalAssetMove": {
+      "uri": "/digitalasset/move",
+      "method": "post"
+    },
+    "digitalAssetDelete": {
+      "uri": "/digitalasset/delete",
+      "method": "delete"
+    }
+  },
+  "auth": {
+    "token": {
+      "uri": "/token",
+      "method": "post"
+    },
+    "validateToken": {
+      "uri": "/validate/token/{token}",
+      "method": "get"
+    },
+    "removeExpiredTokens": {
+      "uri": "/remove/expired/tokens",
+      "method": "delete"
+    },
+    "revokeToken": {
+      "uri": "/revoke/token/{token}",
+      "method": "get"
+    },
+    "apiCredentialByToken": {
+      "uri": "/apicredential/{token}",
+      "method": "get"
+    },
+    "tokenDetails": {
+      "uri": "/token/details/{token}",
+      "method": "get"
+    },
+    "authorize": {
+      "uri": "/authorize",
+      "method": "post"
+    },
+    "userDetails": {
+      "uri": "/user/details/{user_id}",
+      "method": "get"
+    },
+    "userDetailsBy": {
+      "uri": "/user/details/by/{by}",
+      "method": "get"
+    },
+    "resetPassword": {
+      "uri": "/user/reset-password",
+      "method": "post"
+    },
+    "activateUser": {
+      "uri": "/user/{user}/activate/{token}",
+      "method": "get"
+    },
+    "login": {
+      "uri": "/login",
+      "method": "post"
+    },
+    "logout": {
+      "uri": "/logout/{user_id}",
+      "method": "get"
+    },
+    "addUser": {
+      "uri": "/register",
+      "method": "post"
+    },
+    "checkEmail": {
+      "uri": "/validate/email/{email}",
+      "method": "get"
+    },
+    "checkUsername": {
+      "uri": "/validate/username/{username}",
+      "method": "get"
+    },
+    "checkEmailAndUsername": {
+      "uri": "/validate/email/{email}/username/{username}",
+      "method": "get"
+    },
+    "removeUser": {
+      "uri": "/remove/user/{user_id}",
+      "method": "delete"
+    }
+  },
+  "cart": {
+    "create": {
+      "uri": "/create",
+      "method": "post"
+    },
+    "clear": {
+      "uri": "/clear/{cart_id}",
+      "method": "delete"
+    },
+    "deleteCart": {
+      "uri": "/delete/cart/{cart_id}",
+      "method": "delete"
+    },
+    "deleteCarts": {
+      "uri": "/delete/carts/{cart_ids}",
+      "method": "delete"
+    },
+    "deleteCartAndOrder": {
+      "uri": "/delete/cart/order/bycartid/{cart_id}",
+      "method": "delete"
+    },
+    "deleteOrder": {
+      "uri": "/delete/order/{order_id}",
+      "method": "delete"
+    },
+    "deleteOrders": {
+      "uri": "/delete/orders/{order_ids}",
+      "method": "delete"
+    },
+    "addItems": {
+      "uri": "/add/items/{cart_id}",
+      "method": "post"
+    },
+    "addDiscount": {
+      "uri": "/add/discount/{cart_id}",
+      "method": "post"
+    },
+    "itemsByCartId": {
+      "uri": "/items/byid/{cart_id}",
+      "method": "get"
+    },
+    "itemsByOrderId": {
+      "uri": "/items/byorderid/{order_id}",
+      "method": "get"
+    },
+    "removeItems": {
+      "uri": "/remove/items/{cart_id}/{product_ids}",
+      "method": "delete"
+    },
+    "increaseItemQuantity": {
+      "uri": "/increase/item/quantity/{cart_id}/{product_id}/{quantity}",
+      "method": "put"
+    },
+    "setItemQuantity": {
+      "uri": "/set/item/quantity/{cart_id}/{product_id}/{quantity}",
+      "method": "put"
+    },
+    "decreaseItemQuantity": {
+      "uri": "/decrease/item/quantity/{cart_id}/{product_id}/{quantity}",
+      "method": "delete"
+    },
+    "orderItemsByCustomerId": {
+      "uri": "/items/bycustomerid/{customer_id}",
+      "method": "get"
+    },
+    "checkout": {
+      "uri": "/checkout/{cart_id}",
+      "method": "post"
+    },
+    "processPayment": {
+      "uri": "/process/payment/{order_id}",
+      "method": "post"
+    },
+
+    "couponById": {
+      "uri": "/coupon/byid/{id}",
+      "method": "get"
+    },
+    "couponByIds": {
+      "uri": "/coupon/byids/{ids}",
+      "method": "get"
+    },
+    "refund": {
+      "uri": "/refund/items/{order_id}",
+      "method": "post"
+    },
+    "stripePaymentIntent": {
+      "uri": "/stripe/paymentintent/{cart_id}",
+      "method": "get"
+    },
+    "saveSubscription": {
+      "uri": "/subscription/add/{product_id}/{customer_id}/{store_id}",
+      "method": "post"
+    },
+    "deleteSubscription": {
+      "uri": "/subscription/delete/{id}",
+      "method": "delete"
+    }
+  },
+  "config": {
+    "getStaticConfig": {
+      "uri": "/static/{env}/{config}",
+      "method": "get"
+    },
+    "staticConfigForm": {
+      "uri": "/static/form",
+      "method": "post"
+    },
+    "getUserConfigEnv": {
+      "uri": "/user/{user_id}/{entity}/{env}",
+      "method": "get"
+    },
+    "getUserConfig": {
+      "uri": "/user/{user_id}/{entity}",
+      "method": "get"
+    },
+    "getUserConfigEnvService": {
+      "uri": "/user/{user_id}/{entity}/{env}/{service}",
+      "method": "get"
+    },
+    "userConfigForm": {
+      "uri": "/user/form",
+      "method": "post"
+    },
+    "removeStaticConfig": {
+      "uri": "/remove/static/{env}/{name}",
+      "method": "delete"
+    },
+    "removeUserConfig": {
+      "uri": "/remove/user/{user_id}",
+      "method": "delete"
+    },
+    "spinUpNewDatabase": {
+      "uri": "/spinupdb/{user_id}/{entity}",
+      "method": "put"
+    },
+    "appIdForKafka": {
+      "uri": "/app/identity/for/kafka/{access_token}/{hashed_app_name}",
+      "method": "put"
+    },
+    "appsByClientId": {
+      "uri": "/apps/{client_id}",
+      "method": "get"
+    },
+    "deleteApp": {
+      "uri": "/delete/app",
+      "method": "delete"
+    },
+    "demoUsers": {
+      "uri": "/demo/users/{days_ago}",
+      "method": "get"
+    },
+    "deleteDemoUsers": {
+      "uri": "/delete/demo/users/{days_ago}",
+      "method": "delete"
+    },
+    "destroyEnvironment": {
+      "uri": "/destroy/environment/{component}/{user_id}",
+      "method": "delete"
+    },
+    "encryptUserConfig": {
+      "uri": "/encrypt/user/config",
+      "method": "put"
+    },
+    "getServers": {
+      "uri": "/servers/{entity}/{env}",
+      "method": "get"
+    },
+    "updateUserConfig": {
+      "uri": "/update/{user_id}/config",
+      "method": "post"
+    },
+    "addServiceToUserConfig": {
+      "uri": "/add/service/{entity}/{env}/{service}/to/user/{user_ids}",
+      "method": "post"
+    }
+  },
+  "customer": {
+    "customers": {
+      "uri": "/list",
+      "method": "get"
+    },
+    "login": {
+      "uri": "/login",
+      "method": "post"
+    },
+    "signup": {
+      "uri": "/signup",
+      "method": "post"
+    },
+    "update": {
+      "uri": "/update/{customer_id}",
+      "method": "post"
+    },
+    "addNew": {
+      "uri": "/add",
+      "method": "post"
+    },
+    "orders": {
+      "uri": "/{customer_id}/orders",
+      "method": "get"
+    },
+    "invoices": {
+      "uri": "/{customer_id}/invoices",
+      "method": "get"
+    },
+    "invoice": {
+      "uri": "/invoice/{invoice_id}",
+      "method": "get"
+    },
+    "profile": {
+      "uri": "/{customer_id}/profile",
+      "method": "get"
+    },
+    "saveAddress": {
+      "uri": "/{customer_id}/save/address",
+      "method": "post"
+    },
+    "delete": {
+      "uri": "/{customer_id}/delete",
+      "method": "delete"
+    },
+    "deleteSubscription": {
+      "uri": "/{customer_id}/subscription/delete",
+      "method": "delete"
+    },
+    "subscription": {
+      "uri": "/{customer_id}/subscription",
+      "method": "delete"
+    },
+    "setOrderCustomer": {
+      "uri": "/set/order/{cart_id}/{customer_id}",
+      "method": "put"
+    }
+  },
+  "dashboard": {
+    "orders": {
+      "uri": "/orders",
+      "method": "get"
+    },
+    "revenues": {
+      "uri": "/revenues",
+      "method": "get"
+    },
+    "purchases": {
+      "uri": "/purchases",
+      "method": "get"
+    },
+    "usersGeo": {
+      "uri": "/users/geo",
+      "method": "get"
+    },
+    "loggedInUsers": {
+      "uri": "/users/loggedin",
+      "method": "get"
+    },
+    "payments": {
+      "uri": "/payments",
+      "method": "get"
+    }
+  },
+  "employee": {
+    "addEmployee": {
+      "uri": "/add",
+      "method": "post"
+    },
+    "details": {
+      "uri": "/details/{id}",
+      "method": "get"
+    },
+    "forgotPin": {
+      "uri": "/forgot/pin/{id}",
+      "method": "post"
+    },
+    "validatePin": {
+      "uri": "/validate/pin/{pin}",
+      "method": "post"
+    }
+  },
+  "globalproperties": {
+    "addressList": {
+      "uri": "/address/list",
+      "method": "get"
+    },
+    "addressGetByID": {
+      "uri": "/address/byid/{id}",
+      "method": "get"
+    },
+    "addressForm": {
+      "uri": "/address/form",
+      "method": "post"
+    },
+    "addressDelete": {
+      "uri": "/address/delete",
+      "method": "delete"
+    },
+    "temperatureList": {
+      "uri": "/temperature/list",
+      "method": "get"
+    },
+    "temperatureGetByID": {
+      "uri": "/temperature/byid/{id}",
+      "method": "get"
+    },
+    "temperatureForm": {
+      "uri": "/temperature/form",
+      "method": "post"
+    },
+    "temperatureDelete": {
+      "uri": "/temperature/delete",
+      "method": "delete"
+    },
+    "measurementLengthList": {
+      "uri": "/measurement/length/list",
+      "method": "get"
+    },
+    "measurementLengthGetById": {
+      "uri": "/measurement/length/byid/{id}",
+      "method": "get"
+    },
+    "measurementLengthForm": {
+      "uri": "/measurement/length/form",
+      "method": "post"
+    },
+    "measurementLengthDelete": {
+      "uri": "/measurement/length/delete",
+      "method": "delete"
+    },
+    "measurementWeightList": {
+      "uri": "/measurement/weight/list",
+      "method": "get"
+    },
+    "measurementWeightGetById": {
+      "uri": "/measurement/weight/byid/{id}",
+      "method": "get"
+    },
+    "measurementWeightForm": {
+      "uri": "/measurement/weight/form",
+      "method": "post"
+    },
+    "measurementWeightDelete": {
+      "uri": "/measurement/weight/delete",
+      "method": "delete"
+    },
+    "currencyList": {
+      "uri": "/currency/list",
+      "method": "get"
+    },
+    "currencyGetById": {
+      "uri": "/currency/byid/{id}",
+      "method": "get"
+    },
+    "currencyForm": {
+      "uri": "/currency/form",
+      "method": "post"
+    },
+    "currencyDelete": {
+      "uri": "/currency/delete",
+      "method": "delete"
+    },
+    "countryList": {
+      "uri": "/country/list",
+      "method": "get"
+    },
+    "countryGetById": {
+      "uri": "/country/byid/{id}",
+      "method": "get"
+    },
+    "countryForm": {
+      "uri": "/country/form",
+      "method": "post"
+    },
+    "countryDelete": {
+      "uri": "/country/delete",
+      "method": "delete"
+    },
+    "commonCountriesList": {
+      "uri": "/common/countries",
+      "method": "get"
+    },
+    "commonCurrenciesList": {
+      "uri": "/common/currencies",
+      "method": "get"
+    },
+    "predefinedDataList": {
+      "uri": "/predefined/{data_type}/list",
+      "method": "get"
+    },
+    "paymentServicesList": {
+      "uri": "/common/payment/services",
+      "method": "get"
+    },
+    "subscriptionPlanList": {
+      "uri": "/subscription/plan/list",
+      "method": "get"
+    },
+    "subscriptionPlanGetById": {
+      "uri": "/subscription/plan/byid/{id}",
+      "method": "get"
+    },
+    "subscriptionPlanForm": {
+      "uri": "/subscription/plan/form",
+      "method": "post"
+    },
+    "subscriptionPlanDelete": {
+      "uri": "/subscription/plan/delete",
+      "method": "delete"
+    }
+  },
+  "install": {
+    "genSSHKeys": {
+      "uri": "/generate/ssh/keys",
+      "method": "post"
+    },
+    "kafkaBrokerData": {
+      "uri": "/kafka/broker/data/{envs}",
+      "method": "get"
+    }
+  },
+  "offer": {
+    "discountList": {
+      "uri": "/discount/list",
+      "method": "get"
+    },
+    "discountGetByID": {
+      "uri": "/discount/byid/{id}",
+      "method": "get"
+    },
+    "discountForm": {
+      "uri": "/discount/form",
+      "method": "post"
+    },
+    "discountDelete": {
+      "uri": "/discount/delete",
+      "method": "delete"
+    },
+    "bundleList": {
+      "uri": "/bundle/list",
+      "method": "get"
+    },
+    "bundleGetByID": {
+      "uri": "/bundle/byid/{id}",
+      "method": "get"
+    },
+    "bundleForm": {
+      "uri": "/bundle/form",
+      "method": "post"
+    },
+    "bundleDelete": {
+      "uri": "/bundle/delete",
+      "method": "delete"
+    },
+    "crossSellList": {
+      "uri": "/cross/sell/list",
+      "method": "get"
+    },
+    "crossSellGetByID": {
+      "uri": "/cross/sell/byid/{id}",
+      "method": "get"
+    },
+    "crossSellForm": {
+      "uri": "/cross/sell/form",
+      "method": "post"
+    },
+    "crossSellDelete": {
+      "uri": "/cross/sell/delete",
+      "method": "delete"
+    },
+    "upSellList": {
+      "uri": "/up/sell/list",
+      "method": "get"
+    },
+    "upSellGetByID": {
+      "uri": "/up/sell/byid/{id}",
+      "method": "get"
+    },
+    "upSellForm": {
+      "uri": "/up/sell/form",
+      "method": "post"
+    },
+    "upSellDelete": {
+      "uri": "/up/sell/delete",
+      "method": "delete"
+    },
+    "offerDiscountList": {
+      "uri": "/offer/discount/list",
+      "method": "get"
+    },
+    "offerDiscountById": {
+      "uri": "/offer/discount/byid/{id}",
+      "method": "get"
+    },
+    "offerDiscountByIds": {
+      "uri": "/offer/discount/byids/{ids}",
+      "method": "get"
+    },
+    "offerDiscountByProductIds": {
+      "uri": "/offer/discount/byproductids/{ids}",
+      "method": "get"
+    },
+    "offerBundleList": {
+      "uri": "/offer/bundle/list",
+      "method": "get"
+    },
+    "offerBundleById": {
+      "uri": "/offer/bundle/byid/{id}",
+      "method": "get"
+    },
+    "offerBundleByIds": {
+      "uri": "/offer/bundle/byids/{ids}",
+      "method": "get"
+    },
+    "offerBundleByProductIds": {
+      "uri": "/offer/bundle/byproductids/{ids}",
+      "method": "get"
+    }
+  },
+  "pim": {
+    "activeProductAttributeList": {
+      "uri": "/active/product/attribute/list",
+      "method": "get"
+    },
+    "productAttributeList": {
+      "uri": "/product/attribute/list",
+      "method": "get"
+    },
+    "productAttributeGetByID": {
+      "uri": "/product/attribute/byid/{id}",
+      "method": "get"
+    },
+    "productAttributeForm": {
+      "uri": "/product/attribute/form",
+      "method": "post"
+    },
+    "productAttributeDelete": {
+      "uri": "/product/attribute/delete",
+      "method": "delete"
+    },
+    "productTypeList": {
+      "uri": "/product/type/list",
+      "method": "get"
+    },
+    "productTypeGetByID": {
+      "uri": "/product/type/byid/{id}",
+      "method": "get"
+    },
+    "productTypeForm": {
+      "uri": "/product/type/form",
+      "method": "post"
+    },
+    "productTypeDelete": {
+      "uri": "/product/type/delete",
+      "method": "delete"
+    },
+    "productAttributesListByProductTypeID": {
+      "uri": "/product/attribute/list/by/producttypeid/{id}",
+      "method": "get"
+    },
+    "productList": {
+      "uri": "/product/list",
+      "method": "get"
+    },
+    "productByID": {
+      "uri": "/product/byid/{id}",
+      "method": "get"
+    },
+    "productByIDs": {
+      "uri": "/product/byids/{ids}",
+      "method": "get"
+    },
+    "productByStoreID": {
+      "uri": "/product/bystoreid/{id}",
+      "method": "get"
+    },
+    "productByCategoryIDs": {
+      "uri": "/product/bycategoryids/{ids}",
+      "method": "get"
+    },
+    "productForm": {
+      "uri": "/product/form",
+      "method": "post"
+    },
+    "productDelete": {
+      "uri": "/product/delete",
+      "method": "delete"
+    }
+  },
+  "pos": {
+    "productList": {
+      "uri": "/product/list",
+      "method": "get"
+    },
+    "categoryList": {
+      "uri": "/category/list",
+      "method": "get"
+    },
+    "storeByID": {
+      "uri": "/store/info/{id}",
+      "method": "get"
+    }
+  },
+  "price": {},
+  "session": {
+    "get": {
+      "uri": "/get/{client_sid}/{key}",
+      "method": "get"
+    },
+    "set": {
+      "uri": "/set/{client_sid}/{key}",
+      "method": "post"
+    },
+    "delete": {
+      "uri": "/delete/{client_sid}/{key}",
+      "method": "delete"
+    },
+    "destroy": {
+      "uri": "/destroy/{client_sid}",
+      "method": "delete"
+    }
+  },
+  "storefront": {
+    "importDemoData": {
+      "uri": "/import/demo/data",
+      "method": "get"
+    },
+    "paymentMethodByStoreId": {
+      "uri": "/payments/bystoreid/{id}",
+      "method": "get"
+    },
+    "priceRange": {
+      "uri": "/price/range",
+      "method": "get"
+    }
+  },
+  "storemanager": {
+    "storeList": {
+      "uri": "/store/list",
+      "method": "get"
+    },
+    "storeByID": {
+      "uri": "/store/byid/{id}",
+      "method": "get"
+    },
+    "storeByIDs": {
+      "uri": "/store/byids/{ids}",
+      "method": "get"
+    },
+    "storeForm": {
+      "uri": "/store/form",
+      "method": "post"
+    },
+    "storeDelete": {
+      "uri": "/store/delete",
+      "method": "delete"
+    },
+    "activeCategoryList": {
+      "uri": "/active/category/list",
+      "method": "get"
+    },
+    "categoryList": {
+      "uri": "/category/list",
+      "method": "get"
+    },
+    "categoryByID": {
+      "uri": "/category/byid/{id}",
+      "method": "get"
+    },
+    "categoryByIDs": {
+      "uri": "/category/byids/{ids}",
+      "method": "get"
+    },
+    "categoryForm": {
+      "uri": "/category/form",
+      "method": "post"
+    },
+    "categoryDelete": {
+      "uri": "/category/delete",
+      "method": "delete"
+    },
+    "manufacturerList": {
+      "uri": "/manufacturer/list",
+      "method": "get"
+    },
+    "manufacturerGetByID": {
+      "uri": "/manufacturer/byid/{id}",
+      "method": "get"
+    },
+    "manufacturerForm": {
+      "uri": "/manufacturer/form",
+      "method": "post"
+    },
+    "manufacturerDelete": {
+      "uri": "/manufacturer/delete",
+      "method": "delete"
+    },
+    "taxList": {
+      "uri": "/tax/list",
+      "method": "get"
+    },
+    "taxGetByID": {
+      "uri": "/tax/byid/{id}",
+      "method": "get"
+    },
+    "taxForm": {
+      "uri": "/tax/form",
+      "method": "post"
+    },
+    "taxDelete": {
+      "uri": "/tax/delete",
+      "method": "delete"
+    },
+    "paymentMethodList": {
+      "uri": "/payment/method/list",
+      "method": "get"
+    },
+    "paymentMethodGetByID": {
+      "uri": "/payment/method/byid/{id}",
+      "method": "get"
+    },
+    "paymentMethodForm": {
+      "uri": "/payment/method/form",
+      "method": "post"
+    },
+    "paymentMethodDelete": {
+      "uri": "/payment/method/delete",
+      "method": "delete"
+    },
+    "shippingMethodList": {
+      "uri": "/shipping/method/list",
+      "method": "get"
+    },
+    "shippingMethodGetByID": {
+      "uri": "/shipping/method/byid/{id}",
+      "method": "get"
+    },
+    "shippingMethodForm": {
+      "uri": "/shipping/method/form",
+      "method": "post"
+    },
+    "shippingMethodDelete": {
+      "uri": "/shipping/method/delete",
+      "method": "delete"
+    }
+  }
+}

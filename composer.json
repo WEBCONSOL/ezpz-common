@@ -1,0 +1,21 @@
+{
+    "name": "webconsol/ezpz-common",
+    "version": "1.0.0",
+    "description": "Ezpizee Common",
+    "type": "library",
+    "keywords": ["common"],
+    "homepage": "https://gitlab.com/ezpizee/e-commerce/common",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sothea Nim",
+            "email": "sothea.nim@webconsol.com",
+            "homepage": "https://www.webconsol.com"
+        }
+    ],
+    "autoload": {
+        "psr-0" : {
+            "Ezpz\\Common\\" : "src/"
+        }
+    }
+}

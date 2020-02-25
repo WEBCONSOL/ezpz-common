@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Action required: Account Activation</title>
+</head>
+<body>
+<p>You are receiving this email because you just signed up to use www.ezpizee.com with the following credentials:</p>
+<p><strong>Username: </strong> ${username}</p>
+<p><strong>Password: </strong> ${password}</p>
+<p><strong>Email: </strong> ${email}</p>
+<p>
+    Click here to activate your account:
+    <a href="https://${host @ context='attribute'}/user/${user_id @ context='attribute'}/activate/${activate_token @ context='attribute'}">
+        https://${host}/user/${user_id}/activate/${activate_token}
+    </a>
+</p>
+</body>
+</html>

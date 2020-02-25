@@ -1,0 +1,34 @@
+{
+  "commerce": {
+    "assets": {},
+    "auth": {},
+    "cart": {},
+    "config": {},
+    "employee": {},
+    "globalproperties": {},
+    "install": {},
+    "offer": {},
+    "pim": {},
+    "pos": {},
+    "price": {},
+    "session": {},
+    "storefront": {},
+    "storemanager": {}
+  },
+  "environments": {
+    "local": {},
+    "dev": {},
+    "qa": {},
+    "stage": {},
+    "prod": {}
+  },
+  "credentials": {
+    "host": "{host}",
+    "driver": "{driver}",
+    "port": "{port}",
+    "charset": "{charset}",
+    "user": "{user}",
+    "password": "{pw}",
+    "database": "{service}_{dbname}"
+  }
+}

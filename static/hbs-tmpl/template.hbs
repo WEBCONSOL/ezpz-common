@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{> partials/head }}
+</head>
+<body style="margin: 0 !important; padding: 0 !important;">
+
+{{#if preheadertext}}
+<!-- HIDDEN PREHEADER TEXT -->
+<div style="display: none; font-size: 1px; color: #fefefe; line-height: 1px; font-family: Helvetica, Arial, sans-serif; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+    {{preheadertext}}
+</div>
+{{/if}}
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td align="center">
+            <table border="1" cellpadding="0" cellspacing="0" width="550" bordercolor="#D9DDE0" style="border:1px solid #D9DDE0">
+                <!-- header -->
+                <tr>
+                    <td bgcolor="#075aa5" align="center">
+                        {{> partials/header }}
+                    </td>
+                </tr>
+                <!-- /header -->
+                <!-- one column -->
+                <tr>
+                    <td bgcolor="#ffffff" align="center" style="padding: 40px 15px;">
+                        <!--[if (gte mso 9)|(IE)]>
+                        <table align="center" border="0" cellspacing="0" cellpadding="0" width="500">
+                            <tr>
+
+                                <td align="center" valign="top" width="500">
+                        <![endif]-->
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 500px;" class="responsive-table">
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <!-- text -->
+                                            <td align="left"
+                                                style="padding: 20px 0 0 0; font-size: 16px; line-height: 25px; font-family: Helvetica, Arial, sans-serif; color: #34495B;"
+                                                class="padding-copy">
+                                                {{{message}}}
+                                            </td>
+                                            <!-- text -->
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                        <!--[if (gte mso 9)|(IE)]>
+                        </td>
+
+                        </tr>
+                        </table>
+                        <![endif]-->
+                    </td>
+                </tr>
+                <!-- /one column -->
+                <!-- footer -->
+                <tr>
+                    <td bgcolor="#ffffff" align="center" style="padding: 20px 0px;">
+                        {{> partials/footer }}
+                    </td>
+                </tr>
+                <!-- /footer -->
+            </table>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
