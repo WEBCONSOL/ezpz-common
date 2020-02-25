@@ -2,6 +2,11 @@
 
 define('EZPZ_COMMERCE_APP', 1);
 define('DS', DIRECTORY_SEPARATOR);
+
+define('PATH_COMMON', __DIR__);
+define('PATH_COMMON_STATIC', PATH_COMMON . DS . 'static');
+define('PATH_COMMON_CONFIG', PATH_COMMON_STATIC . DS . 'config');
+
 define('DATE', 'Y-m-d');
 define('DATETIME', 'Y-m-d h:i:s');
 
