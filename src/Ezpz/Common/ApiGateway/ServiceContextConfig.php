@@ -10,7 +10,6 @@ class ServiceContextConfig {
 
     public function __construct(string $service)
     {
-        die('100');
         $this->data['root'] = $_SERVER['DOCUMENT_ROOT'] . DS . 'service_' . strtolower($service);
         $serviceConfig = $this->data['root'] . DS . 'config.json';
         $this->data['hasConfig'] = file_exists($serviceConfig);
