@@ -10,7 +10,7 @@ class ServiceContextConfig {
 
     public function __construct(string $service)
     {
-        $this->data['root'] = PATH_SERVICES . DS . strtolower($service);
+        $this->data['root'] = $_SERVER['DOCUMENT_ROOT'] . DS . 'service_' . strtolower($service);
         $serviceConfig = $this->data['root'] . DS . 'config.json';
         $this->data['hasConfig'] = file_exists($serviceConfig);
         if ($this->data['hasConfig']) {
@@ -18,7 +18,6 @@ class ServiceContextConfig {
             $obj = json_decode(file_get_contents($serviceConfig), true);
             $this->data['serviceNamespacePfx'] = isset($obj['serviceNamespacePfx']) ? $obj['serviceNamespacePfx'] : null;
 
-            $this->data['repoConfigParams']['env'] = EZPZ_ENV;
             $this->data['repoConfigParams']['user'] = EZPZ_USERNAME;
             $this->data['repoConfigParams']['service'] = strtolower($service);
 
