@@ -7,7 +7,7 @@ use WC\Utilities\CustomResponse;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManager;
 use Ezpz\Common\FileSystem\InterfaceFileSystem;
-use Repository\DBTableConstants;
+use Ezpz\Common\Repository\DBTableConstants;
 use Utilities\Request;
 use Utilities\HostNames;
 use WC\Utilities\EncodingUtil;

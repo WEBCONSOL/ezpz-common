@@ -2,15 +2,16 @@
 
 namespace Ezpz\Common\ApiGateway;
 
+use Ezpz\Common\Utilities\Request;
 use WC\Models\ListModel;
 
 class ServiceContextConfig {
 
     private $data = ['repoConfigParams'=>[], 'root'=>null, 'serviceNamespacePfx'=>'', 'hasConfig'=>false, 'serviceName'=>''];
 
-    public function __construct(string $service)
+    public function __construct(string $service, string $serviceRoot)
     {
-        $this->data['root'] = $_SERVER['DOCUMENT_ROOT'] . DS . 'service_' . strtolower($service);
+        $this->data['root'] = $serviceRoot;
         $serviceConfig = $this->data['root'] . DS . 'config.json';
         $this->data['hasConfig'] = file_exists($serviceConfig);
         if ($this->data['hasConfig']) {
@@ -18,7 +19,8 @@ class ServiceContextConfig {
             $obj = json_decode(file_get_contents($serviceConfig), true);
             $this->data['serviceNamespacePfx'] = isset($obj['serviceNamespacePfx']) ? $obj['serviceNamespacePfx'] : null;
 
-            $this->data['repoConfigParams']['user'] = EZPZ_USERNAME;
+            $request = new Request();
+            $this->data['repoConfigParams']['user'] = $request->getHeaderParam(HEADER_USER_NAME, '');
             $this->data['repoConfigParams']['service'] = strtolower($service);
 
             // static or user. Default: user
@@ -35,8 +37,6 @@ class ServiceContextConfig {
     public function getServiceNamespacePfx():string {return $this->data['serviceNamespacePfx'];}
     public function getServiceName():string {return $this->data['serviceName'];}
     public function getServiceNamespace():string {return $this->getServiceNamespacePfx() . '\\Provider\\Slim';}
-    public function getServiceAutoloadClass(): string {return $this->getServiceNamespacePfx() . 'Autoload';}
-    public function getServiceAutoloadPath(): string {return $this->data['root'] . DS . $this->getServiceAutoloadClass() . '.php';}
     public function getRepositoryConfigParams(): ListModel {return new ListModel($this->data['repoConfigParams']);}
     public function getSlimServiceProviderSetting(): array {
         return ['serviceNameSpacePfx' => $this->data['serviceNamespacePfx'], 'serviceKey' => $this->data['serviceName']];

@@ -2,8 +2,8 @@
 
 namespace Ezpz\Common\Helper;
 
-use Repository\DataService;
-use Repository\DBTableConstants;
+use Ezpz\Common\Repository\DataService;
+use Ezpz\Common\Repository\DBTableConstants;
 
 class StoreHelper
 {

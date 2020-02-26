@@ -3,7 +3,7 @@
 namespace Ezpz\Common\OAuth2Server;
 
 use Ezpz\Common\ApiGateway\Endpoints;
-use WC\Security\Jwt;
+use Ezpz\Common\Security\Jwt;
 use WC\Utilities\CustomResponse;
 use Slim\App;
 use Pimple\Container;

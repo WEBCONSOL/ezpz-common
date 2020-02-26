@@ -8,7 +8,7 @@ use KafkaService\Producer;
 use OAuth2Server\AccessTokenValidator;
 use Utilities\HostNames;
 use Utilities\HttpClient;
-use WC\Security\Jwt;
+use Ezpz\Common\Security\Jwt;
 
 abstract class AbstractDataRemover extends AbstractApiContextProcessor
 {

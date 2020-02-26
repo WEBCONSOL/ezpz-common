@@ -9,7 +9,7 @@ use Utilities\HostNames;
 use Utilities\HttpClient;
 use WC\Models\ListModel;
 use WC\Models\SessionModel;
-use WC\Security\Jwt;
+use Ezpz\Common\Security\Jwt;
 use WC\Utilities\DateTimeFormat;
 use WC\Utilities\EncodingUtil;
 

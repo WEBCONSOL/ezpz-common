@@ -4,7 +4,7 @@ namespace Ezpz\Common\Helper;
 
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManager;
-use Repository\DBTableConstants;
+use Ezpz\Common\Repository\DBTableConstants;
 use WC\Utilities\Logger;
 use WC\Utilities\StringUtil;
 

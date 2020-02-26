@@ -10,7 +10,7 @@ use Utilities\HostNames;
 use Utilities\HttpClient;
 use WC\Models\ListModel;
 use WC\Models\UserModel;
-use WC\Security\Jwt;
+use Ezpz\Common\Security\Jwt;
 use WC\Utilities\CustomResponse;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;

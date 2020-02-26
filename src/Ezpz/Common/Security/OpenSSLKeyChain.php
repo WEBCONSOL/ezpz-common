@@ -1,6 +1,6 @@
 <?php
 
-namespace Ezpz\Common\WC\Security;
+namespace Ezpz\Common\Security;
 
 final class OpenSSLKeyChain
 {

@@ -2,18 +2,19 @@
 
 namespace Ezpz\Common\Repository\Impl;
 
-use WC\Security\InternalJWT;
+use Ezpz\Common\Security\InternalJWT;
 use WC\Utilities\CustomResponse;
 use Doctrine\DBAL\DBALException;
-use Repository\DbConfigInterface;
-use Utilities\HostNames;
-use Utilities\HttpClient;
+use Ezpz\Common\Repository\DbConfigInterface;
+use Ezpz\Common\Utilities\HostNames;
+use Ezpz\Common\Utilities\HttpClient;
 use WC\Models\ListModel;
 use WC\Utilities\EncodingUtil;
 use WC\Utilities\Logger;
 
 class DoctrineConfig implements DbConfigInterface
 {
+    private $root = '/srv/api/';
     private $settings = array();
 
     public function loadSettings(ListModel $settings, ListModel $configParams)
@@ -29,7 +30,7 @@ class DoctrineConfig implements DbConfigInterface
 
             $this->settings = array(
                 'dev_mode' => true,
-                'cache_dir' => $settings->has('cache_dir') ? $settings->get('cache_dir') : (PATH_CACHE . DS . 'doctrine'),
+                'cache_dir' => $settings->get('cache_dir', '/cache'),
                 'metadata_dirs' => $settings->has('metadata_dirs') ? $settings->get('metadata_dirs') : array(),
                 'connection' => $config
             );
@@ -46,8 +47,8 @@ class DoctrineConfig implements DbConfigInterface
     private function getConfig(ListModel $configParams): array
     {
         $config = array();
-        if (EZPZ_SITE === 'config' || $configParams->get('force_config', false)) {
-            $file = PATH_SERVICE_CONFIG . DS . 'config' . DS . $configParams->get('env') . DS . $configParams->get('entity') . '.json';
+        if ($configParams->get('force_config', false)) {
+            $file = $this->root . 'config' . DS . $configParams->get('entity') . '.json';
             if (file_exists($file)) {
                 $config = json_decode(file_get_contents($file), true);
                 if (isset($config['content'])) {
@@ -70,7 +71,7 @@ class DoctrineConfig implements DbConfigInterface
 
     private function loadLocally(ListModel $configParams): array {
         $config = array();
-        $file = PATH_SERVICE_CONFIG . '/config/' . $configParams->get('env') . '/oauth.json';
+        $file = $this->root . 'config/oauth.json';
         if (file_exists($file)) {
             try {
                 $connectionParams = json_decode(file_get_contents($file), true);

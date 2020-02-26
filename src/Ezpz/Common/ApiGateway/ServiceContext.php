@@ -2,10 +2,11 @@
 
 namespace Ezpz\Common\ApiGateway;
 
+use Ezpz\Common\Repository\Impl\DoctrineConfig;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use SharedServiceProvider\Doctrine;
-use Utilities\HttpClient;
+use Ezpz\Common\SharedServiceProvider\Doctrine;
+use Ezpz\Common\Utilities\HttpClient;
 use WC\Models\ListModel;
 use WC\Utilities\CustomResponse;
 use WC\Utilities\EncodingUtil;
@@ -31,9 +32,8 @@ class ServiceContext {
 
     public static function loadServiceContextProcessor(ServiceContextConfig $config): Response {
         \WC\Utilities\CustomErrorHandler::init(false);
-        if (!class_exists($config->getServiceAutoloadClass(), false)) {include_once $config->getServiceAutoloadPath();}
         $slimConfig = new SlimSettings();
-        $doctrineConfig = new \Repository\Impl\DoctrineConfig();
+        $doctrineConfig = new DoctrineConfig();
         $doctrineConfig->loadSettings($config->getRepositoryConfigParams(), $config->getRepositoryConfigParams());
         $slimConfig->append('doctrine', $doctrineConfig->getAsArray());
         $container = new \Slim\Container($slimConfig->getAsArray());

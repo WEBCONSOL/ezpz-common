@@ -3,8 +3,8 @@
 namespace Ezpz\Common\Helper;
 
 use Ezpz\Common\ApiGateway\Endpoints;
-use Repository\DataService;
-use Repository\DBTableConstants;
+use Ezpz\Common\Repository\DataService;
+use Ezpz\Common\Repository\DBTableConstants;
 use Utilities\HostNames;
 use Utilities\HttpClient;
 

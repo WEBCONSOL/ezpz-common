@@ -3,10 +3,10 @@
 namespace Ezpz\Common\Helper;
 
 use Doctrine\ORM\EntityManager;
-use Repository\DataService;
+use Ezpz\Common\Repository\DataService;
 use Utilities\Request;
-use WC\Security\Jwt;
-use WC\Security\Token;
+use Ezpz\Common\Security\Jwt;
+use Ezpz\Common\Security\Token;
 use WC\Utilities\CustomResponse;
 use WC\Utilities\Logger;
 
