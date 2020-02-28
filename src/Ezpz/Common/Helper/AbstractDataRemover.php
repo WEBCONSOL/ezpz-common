@@ -3,11 +3,11 @@
 namespace Ezpz\Common\Helper;
 
 use Ezpz\Common\ApiGateway\Endpoints;
-use KafkaService\Constants;
-use KafkaService\Producer;
-use OAuth2Server\AccessTokenValidator;
-use Utilities\HostNames;
-use Utilities\HttpClient;
+use Ezpz\Common\KafkaService\Constants;
+use Ezpz\Common\KafkaService\Producer;
+use Ezpz\Common\OAuth2Server\AccessTokenValidator;
+use Ezpz\Common\Utilities\HostNames;
+use Ezpz\Common\Utilities\HttpClient;
 use Ezpz\Common\Security\Jwt;
 
 abstract class AbstractDataRemover extends AbstractApiContextProcessor

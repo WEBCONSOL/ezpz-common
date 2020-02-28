@@ -6,7 +6,7 @@ use League\Flysystem\Adapter\Local;
 use League\Flysystem\FileExistsException;
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\Filesystem as FileSystemLib;
-use Utilities\HostNames;
+use Ezpz\Common\Utilities\HostNames;
 use WC\Utilities\CustomResponse;
 use WC\Utilities\FileUtil;
 use WC\Utilities\PathUtil;

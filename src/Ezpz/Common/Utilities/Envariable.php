@@ -10,6 +10,8 @@ final class Envariable
 
     private function __construct(){}
 
+    public static function environment(): string {return self::get('EZPZ_ENV');}
+
     public static function get(string $k): string {
         self::load(EZPZ_ROOT.DS.'.env');
         return isset(self::$ENV[$k]) ? self::$ENV[$k] : '';

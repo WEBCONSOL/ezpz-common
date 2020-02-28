@@ -9,8 +9,8 @@ use Slim\App;
 use Pimple\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Utilities\HostNames;
-use Utilities\HttpClient;
+use Ezpz\Common\Utilities\HostNames;
+use Ezpz\Common\Utilities\HttpClient;
 use WC\Utilities\Logger;
 
 class AccessTokenValidator

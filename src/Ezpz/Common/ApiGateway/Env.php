@@ -2,7 +2,7 @@
 
 namespace Ezpz\Common\ApiGateway;
 
-use Utilities\HostNames;
+use Ezpz\Common\Utilities\HostNames;
 use \WC\Models\ListModel;
 
 class Env

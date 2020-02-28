@@ -3,7 +3,7 @@
 namespace Ezpz\Common\Helper;
 
 use Ezpz\Common\ApiGateway\Constants;
-use Utilities\Request;
+use Ezpz\Common\Utilities\Request;
 use \Slim\Http\Request as SlimRequest;
 
 class Query

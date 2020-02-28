@@ -4,7 +4,7 @@ namespace Ezpz\Common\Helper;
 
 use Doctrine\ORM\EntityManager;
 use Ezpz\Common\Repository\DataService;
-use Utilities\Request;
+use Ezpz\Common\Utilities\Request;
 use Ezpz\Common\Security\Jwt;
 use Ezpz\Common\Security\Token;
 use WC\Utilities\CustomResponse;

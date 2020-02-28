@@ -6,7 +6,7 @@ namespace Ezpz\Common\Session\Action;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
-use Session\Domain\PhpSession;
+use Ezpz\Common\Session\Domain\PhpSession;
 use WC\Models\ListModel;
 
 class PhpSessionManager

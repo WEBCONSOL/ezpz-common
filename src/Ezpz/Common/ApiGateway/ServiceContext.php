@@ -32,6 +32,7 @@ class ServiceContext {
 
     public static function loadServiceContextProcessor(ServiceContextConfig $config): Response {
         \WC\Utilities\CustomErrorHandler::init(false);
+        \Ezpz\Common\CustomAutoload::exec();
         $slimConfig = new SlimSettings();
         $doctrineConfig = new DoctrineConfig();
         $doctrineConfig->loadSettings($config->getRepositoryConfigParams(), $config->getRepositoryConfigParams());

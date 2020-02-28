@@ -2,9 +2,9 @@
 
 namespace Ezpz\Common\Payment\Services;
 
-use Payment\Models\OrderItems;
-use Payment\Models\CreditCard;
-use Payment\Helpers\JSONObject;
+use Ezpz\Common\Payment\Models\OrderItems;
+use Ezpz\Common\Payment\Models\CreditCard;
+use Ezpz\Common\Payment\Helpers\JSONObject;
 
 interface PaymentServiceInterface
 {
