@@ -24,7 +24,7 @@ final class HostNames
     public static function getApi(string $env=''): string {return self::get('api', $env);}
 
     public static function get(string $service, string $env=''): string {
-        if (!$env) {$env = EZPZ_ENV;}
+        if (!$env) {$env = Envariable::environment();}
         $https = filter_input(INPUT_SERVER, 'HTTPS');
         return 'http'.($https?'s://':'://').($env==='prod' || $env === '' ? '' : $env.'-').$service.'.ezpizee.com';
     }

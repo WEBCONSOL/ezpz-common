@@ -2,34 +2,30 @@
 
 namespace Ezpz\Common\ApiGateway;
 
-use Ezpz\Common\Utilities\Request;
+use Ezpz\Common\Utilities\Envariable;
 use WC\Models\ListModel;
 
 class ServiceContextConfig {
 
     private $data = ['repoConfigParams'=>[], 'root'=>null, 'serviceNamespacePfx'=>'', 'hasConfig'=>false, 'serviceName'=>''];
 
-    public function __construct(string $service, string $serviceRoot)
+    public function __construct(string $serviceRoot)
     {
         $this->data['root'] = $serviceRoot;
-        $serviceConfig = $this->data['root'] . DS . 'config.json';
-        $this->data['hasConfig'] = file_exists($serviceConfig);
-        if ($this->data['hasConfig']) {
-            $this->data['serviceName'] = strtolower($service);
-            $obj = json_decode(file_get_contents($serviceConfig), true);
-            $this->data['serviceNamespacePfx'] = isset($obj['serviceNamespacePfx']) ? $obj['serviceNamespacePfx'] : null;
+        $this->data['serviceName'] = Envariable::serviceName();
+        $this->data['serviceNamespacePfx'] = Envariable::serviceNameSpacePfx();
+        $this->data['repoConfigParams']['env'] = Envariable::environment();
+        $this->data['repoConfigParams']['user'] = Envariable::username();
+        $this->data['repoConfigParams']['service'] = Envariable::serviceName();
 
-            $request = new Request();
-            $this->data['repoConfigParams']['user'] = $request->getHeaderParam(HEADER_USER_NAME, '');
-            $this->data['repoConfigParams']['service'] = strtolower($service);
-
-            // static or user. Default: user
-            $this->data['repoConfigParams']['type'] = isset($obj['type']) ? $obj['type'] : 'user';
-            // commerce, oauth, etc. Default: commerce
-            $this->data['repoConfigParams']['entity'] = isset($obj['entity']) ? $obj['entity'] : 'commerce';
-            // it's mainly for the config service
-            $this->data['repoConfigParams']['force_config'] = isset($obj['force_config']) ? $obj['force_config'] : false;
-        }
+        // static or user. Default: user
+        $this->data['repoConfigParams']['type'] = Envariable::serviceType();
+        if (!$this->data['repoConfigParams']['type']) {$this->data['repoConfigParams']['type'] = 'user';}
+        // commerce, oauth, etc. Default: commerce
+        $this->data['repoConfigParams']['entity'] = Envariable::serviceEntity();
+        if (!$this->data['repoConfigParams']['entity']) {$this->data['repoConfigParams']['entity'] = 'commerce';}
+        // it's mainly for the config service
+        $this->data['repoConfigParams']['force_config'] = Envariable::serviceForceConfig();
     }
 
     public function hasConfig():bool {return $this->data['hasConfig'];}

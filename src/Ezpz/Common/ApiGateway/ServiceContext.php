@@ -3,6 +3,7 @@
 namespace Ezpz\Common\ApiGateway;
 
 use Ezpz\Common\Repository\Impl\DoctrineConfig;
+use Ezpz\Common\Utilities\Envariable;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Ezpz\Common\SharedServiceProvider\Doctrine;
@@ -76,7 +77,6 @@ class ServiceContext {
             {
                 if (!$env->hasError())
                 {
-                    $options['verify'] = PATH_COMMON_STATIC . "/ssl-cert/".EZPZ_ENV."-cacert.pem";
                     $method = strtoupper($request->getMethod());
                     $body = $request->getParsedBody();
                     if (!empty($body)) {
@@ -137,8 +137,8 @@ class ServiceContext {
     {
         $matches = array();
         $matches['service'] = $this->service;
-        $matches['env'] = EZPZ_ENV;
-        $matches['username'] = EZPZ_USERNAME;
+        $matches['env'] = Envariable::environment();
+        $matches['username'] = Envariable::username();
         $matches = new ListModel($matches);
         return new Env($matches);
     }

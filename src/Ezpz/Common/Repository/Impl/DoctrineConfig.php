@@ -3,6 +3,7 @@
 namespace Ezpz\Common\Repository\Impl;
 
 use Ezpz\Common\Security\InternalJWT;
+use Ezpz\Common\Utilities\Envariable;
 use WC\Utilities\CustomResponse;
 use Doctrine\DBAL\DBALException;
 use Ezpz\Common\Repository\DbConfigInterface;
@@ -29,7 +30,7 @@ class DoctrineConfig implements DbConfigInterface
 
             $this->settings = array(
                 'dev_mode' => true,
-                'cache_dir' => $settings->get('cache_dir', '/cache'),
+                'cache_dir' => $settings->get('cache_dir', EZPZ_ROOT.DS.'cache'),
                 'metadata_dirs' => $settings->has('metadata_dirs') ? $settings->get('metadata_dirs') : array(),
                 'connection' => $config
             );
@@ -47,7 +48,7 @@ class DoctrineConfig implements DbConfigInterface
     {
         $config = array();
         if ($configParams->get('force_config', false)) {
-            $file = EZPZ_ROOT . DS . 'config' . DS . $configParams->get('entity') . '.json';
+            $file = EZPZ_ROOT . DS . 'config' . DS . Envariable::environment() . DS . $configParams->get('entity') . '.json';
             if (file_exists($file)) {
                 $config = json_decode(file_get_contents($file), true);
                 if (isset($config['content'])) {
@@ -70,7 +71,7 @@ class DoctrineConfig implements DbConfigInterface
 
     private function loadLocally(ListModel $configParams): array {
         $config = array();
-        $file = EZPZ_ROOT . DS . 'config/oauth.json';
+        $file = EZPZ_ROOT . DS . 'config' . DS . Envariable::environment() . DS .'oauth.json';
         if (file_exists($file)) {
             try {
                 $connectionParams = json_decode(file_get_contents($file), true);

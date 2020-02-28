@@ -10,9 +10,17 @@ final class Envariable
 
     private function __construct(){}
 
-    public static function environment(): string {return self::get('EZPZ_ENV');}
+    public static function environment() {return self::get('EZPZ_ENV');}
+    public static function serviceName() {return self::get('EZPZ_SERVICE');}
+    public static function serviceType() {return self::get('EZPZ_SERVICE_TYPE');}
+    public static function serviceEntity() {return self::get('EZPZ_SERVICE_ENTITY');}
+    public static function serviceForceConfig() {return self::get('EZPZ_SERVICE_FORCECONFIG');}
+    public static function serviceNameSpacePfx() {return self::get('EZPZ_SERVICE_NAMESPACEPFX');}
 
-    public static function get(string $k): string {
+    public static function username() {return self::get(HEADER_USER_NAME);}
+
+
+    public static function get(string $k) {
         self::load(EZPZ_ROOT.DS.'.env');
         return isset(self::$ENV[$k]) ? self::$ENV[$k] : '';
     }
@@ -38,9 +46,11 @@ final class Envariable
                             }
                             $arr2[1] = implode('=', $arr3);
                         }
-                        self::$ENV[$arr2[0]] = $arr2[1];
+                        self::$ENV[$arr2[0]] = $arr2[1]==='true'?true:($arr2[1]==='false'?false:$arr2[1]);
                     }
                 }
+                $request = new Request();
+                self::$ENV[HEADER_USER_NAME] = $request->getHeaderParam(HEADER_USER_NAME, '');
             }
         }
     }

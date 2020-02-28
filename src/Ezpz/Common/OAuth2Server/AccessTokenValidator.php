@@ -59,7 +59,7 @@ class AccessTokenValidator
     public static function validate(Container $cnt): bool {
 
         $valid = false;
-        $request = new \Utilities\Request();
+        $request = new Ezpz\Common\Utilities\Request();
         $token = $request->getHeaderParam(HEADER_ACCESS_TOKEN);
         self::processToken($token);
         if (!self::$appName) {self::$appName = $request->getHeaderLine('App-Name');}
