@@ -14,7 +14,6 @@ use WC\Utilities\Logger;
 
 class DoctrineConfig implements DbConfigInterface
 {
-    private $root = '/srv/api/';
     private $settings = array();
 
     public function loadSettings(ListModel $settings, ListModel $configParams)
@@ -48,7 +47,7 @@ class DoctrineConfig implements DbConfigInterface
     {
         $config = array();
         if ($configParams->get('force_config', false)) {
-            $file = $this->root . 'config' . DS . $configParams->get('entity') . '.json';
+            $file = EZPZ_ROOT . DS . 'config' . DS . $configParams->get('entity') . '.json';
             if (file_exists($file)) {
                 $config = json_decode(file_get_contents($file), true);
                 if (isset($config['content'])) {
@@ -71,7 +70,7 @@ class DoctrineConfig implements DbConfigInterface
 
     private function loadLocally(ListModel $configParams): array {
         $config = array();
-        $file = $this->root . 'config/oauth.json';
+        $file = EZPZ_ROOT . DS . 'config/oauth.json';
         if (file_exists($file)) {
             try {
                 $connectionParams = json_decode(file_get_contents($file), true);
