@@ -16,17 +16,31 @@ final class Envariable
     public static function serviceEntity() {return self::get('EZPZ_SERVICE_ENTITY');}
     public static function serviceForceConfig() {return self::get('EZPZ_SERVICE_FORCECONFIG');}
     public static function serviceNameSpacePfx() {return self::get('EZPZ_SERVICE_NAMESPACEPFX');}
+    public static function getDBCredentials(): array {
+        self::load($_SERVER['DOCUMENT_ROOT'].DS.'.env');
+        if (isset(self::$ENV['EZPZ_DB_HOST'])) {
+            return [
+                'host'=>self::$ENV['EZPZ_DB_HOST'],
+                'port'=>self::$ENV['EZPZ_DB_PORT'],
+                'user'=>self::$ENV['EZPZ_DB_USER'],
+                'password'=>self::$ENV['EZPZ_DB_PASSWORD'],
+                'dbname'=>self::$ENV['EZPZ_DB_DBNAME'],
+                'driver' => self::$ENV['EZPZ_DB_DRIVER'],
+                'charset' => self::$ENV['EZPZ_DB_CHARSET']
+            ];
+        }
+        return ['host'=>'','port'=>'','user'=>'','password'=>'','dbname'=>'','driver'=>'','charset'=>''];
+    }
 
     public static function username() {return self::get(HEADER_USER_NAME);}
 
-
     public static function get(string $k) {
-        self::load(EZPZ_ROOT.DS.'.env');
+        self::load($_SERVER['DOCUMENT_ROOT'].DS.'.env');
         return isset(self::$ENV[$k]) ? self::$ENV[$k] : '';
     }
 
     public static function getAsArray(): array {
-        self::load(EZPZ_ROOT.DS.'.env');
+        self::load($_SERVER['DOCUMENT_ROOT'].DS.'.env');
         return self::$ENV;
     }
 

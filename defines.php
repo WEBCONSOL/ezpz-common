@@ -2,7 +2,6 @@
 
 define('EZPZ_COMMERCE_APP', 1);
 define('DS', DIRECTORY_SEPARATOR);
-define('EZPZ_ROOT', '/srv/api');
 
 define('PATH_COMMON', __DIR__);
 define('PATH_COMMON_STATIC', PATH_COMMON . DS . 'static');

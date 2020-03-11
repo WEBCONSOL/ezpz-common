@@ -30,7 +30,7 @@ class DoctrineConfig implements DbConfigInterface
 
             $this->settings = array(
                 'dev_mode' => true,
-                'cache_dir' => $settings->get('cache_dir', EZPZ_ROOT.DS.'cache'),
+                'cache_dir' => $settings->get('cache_dir', $_SERVER['DOCUMENT_ROOT'].DS.'cache'),
                 'metadata_dirs' => $settings->has('metadata_dirs') ? $settings->get('metadata_dirs') : array(),
                 'connection' => $config
             );
@@ -46,18 +46,8 @@ class DoctrineConfig implements DbConfigInterface
 
     private function getConfig(ListModel $configParams): array
     {
-        $config = array();
         if ($configParams->get('force_config', false)) {
-            $file = EZPZ_ROOT . DS . 'config' . DS . Envariable::environment() . DS . $configParams->get('entity') . '.json';
-            if (file_exists($file)) {
-                $config = json_decode(file_get_contents($file), true);
-                if (isset($config['content'])) {
-                    $content = InternalJWT::decrypt($config['content']);
-                    if (!empty($content)) {
-                        $config = json_decode($content, true);
-                    }
-                }
-            }
+            $config = Envariable::getDBCredentials();
         }
         else if (EZPZ_LOCAL_MICROSERVICE) {
             $config = $this->loadLocally($configParams);
@@ -71,61 +61,54 @@ class DoctrineConfig implements DbConfigInterface
 
     private function loadLocally(ListModel $configParams): array {
         $config = array();
-        $file = EZPZ_ROOT . DS . 'config' . DS . Envariable::environment() . DS .'oauth.json';
-        if (file_exists($file)) {
-            try {
-                $connectionParams = json_decode(file_get_contents($file), true);
-                if (!empty($connectionParams) && isset($connectionParams['content'])) {
-                    $connectionParams['content'] = InternalJWT::decrypt($connectionParams['content']);
-                    if (!empty($connectionParams['content'])) {
-                        $connectionParams = json_decode($connectionParams['content'], true);
-                    }
+
+        try {
+            $connectionParams = Envariable::getDBCredentials();
+            if ($configParams->is('type', 'static')) {
+                return $connectionParams;
+            }
+            $dbalConfig = new \Doctrine\DBAL\Configuration();
+            $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $dbalConfig);
+            $query = 'SELECT b.content AS data '.
+                'FROM oauth_users a LEFT JOIN userconfig b on b.user_id=a.id '.
+                'WHERE a.username="'.$configParams->get('user').'"';
+            $result = $conn->executeQuery($query)->fetch(\PDO::FETCH_ASSOC);
+            if ($result) {
+                if (EncodingUtil::isValidJSON($result['data'])) {
+                    $data = json_decode($result['data'], true);
                 }
-                if ($configParams->is('type', 'static')) {
-                    return $connectionParams;
+                else if (is_array($result['data'])) {
+                    $data = $result['data'];
                 }
-                $dbalConfig = new \Doctrine\DBAL\Configuration();
-                $conn = \Doctrine\DBAL\DriverManager::getConnection($connectionParams, $dbalConfig);
-                $query = 'SELECT b.content AS data '.
-                    'FROM oauth_users a LEFT JOIN userconfig b on b.user_id=a.id '.
-                    'WHERE a.username="'.$configParams->get('user').'"';
-                $result = $conn->executeQuery($query)->fetch(\PDO::FETCH_ASSOC);
-                if ($result) {
-                    if (EncodingUtil::isValidJSON($result['data'])) {
-                        $data = json_decode($result['data'], true);
-                    }
-                    else if (is_array($result['data'])) {
-                        $data = $result['data'];
+                else {
+                    $data = InternalJWT::decrypt($result['data']);
+                    if (!empty($data) && EncodingUtil::isValidJSON($data)) {
+                        $data = json_decode($data, true);
                     }
                     else {
-                        $data = InternalJWT::decrypt($result['data']);
-                        if (!empty($data) && EncodingUtil::isValidJSON($data)) {
-                            $data = json_decode($data, true);
-                        }
-                        else {
-                            $data = [];
-                        }
+                        $data = [];
                     }
-                    if (is_array($data) && !empty($data) && isset($data[$configParams->get('entity')])) {
-                        $data = $data[$configParams->get('entity')];
-                        if (isset($data[$configParams->get('env')])) {
-                            if (isset($data[$configParams->get('env')][$configParams->get('service')])) {
-                                $config = $data[$configParams->get('env')][$configParams->get('service')];
-                                $this->formatConfig($config);
-                            }
-                            else if (isset($data[$configParams->get('env')]['cart'])) {
-                                $config = $data[$configParams->get('env')]['cart'];
-                                $this->formatConfig($config);
-                            }
+                }
+                if (is_array($data) && !empty($data) && isset($data[$configParams->get('entity')])) {
+                    $data = $data[$configParams->get('entity')];
+                    if (isset($data[$configParams->get('env')])) {
+                        if (isset($data[$configParams->get('env')][$configParams->get('service')])) {
+                            $config = $data[$configParams->get('env')][$configParams->get('service')];
+                            $this->formatConfig($config);
+                        }
+                        else if (isset($data[$configParams->get('env')]['cart'])) {
+                            $config = $data[$configParams->get('env')]['cart'];
+                            $this->formatConfig($config);
                         }
                     }
                 }
             }
-            catch (DBALException $e) {
-                Logger::error($e->getMessage()." (".DoctrineConfig::class.")");
-                CustomResponse::render($e->getCode(), "DoctrineConfig DBALException. " . $e->getMessage() . ' ('.$e->getCode().')');
-            }
         }
+        catch (DBALException $e) {
+            Logger::error($e->getMessage()." (".DoctrineConfig::class.")");
+            CustomResponse::render($e->getCode(), "DoctrineConfig DBALException. " . $e->getMessage() . ' ('.$e->getCode().')');
+        }
+
         return $config;
     }
 

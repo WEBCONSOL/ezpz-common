@@ -27,7 +27,7 @@ class CustomAutoload
         });
     }
 
-    public final static function root(): string {return EZPZ_ROOT.DS.'src';}
+    public final static function root(): string {return $_SERVER['DOCUMENT_ROOT'].DS.'src';}
 
     public final static function setPackages(array $packages) {self::$packages = $packages;}
 }
