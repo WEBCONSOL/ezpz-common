@@ -2,13 +2,20 @@
 
 define('EZPZ_COMMERCE_APP', 1);
 define('DS', DIRECTORY_SEPARATOR);
-
 define('PATH_COMMON', __DIR__);
 define('PATH_COMMON_STATIC', PATH_COMMON . DS . 'static');
 define('PATH_COMMON_CONFIG', PATH_COMMON_STATIC . DS . 'config');
 
 define('DATE', 'Y-m-d');
 define('DATETIME', 'Y-m-d h:i:s');
+
+define('OAUTH_PUBLIC_KEY', 'file://' . PATH_COMMON_STATIC . '/keys/public.key');
+define('OAUTH_PRIVATE_KEY', 'file://' . PATH_COMMON_STATIC . '/keys/private.key');
+define('OAUTH_ENCRYPTION_KEY', 'OZdbQCErQWVFLAVw7n2DvSYoEVXIkuOHzgL4kPU8mxw=');
+define('SESSION_LIFETIME', 60*60*12); // 12 hours
+define('SESSION_KEY_LOGON_USER_ID', 'logon_user_id');
+define('SESSION_KEY_USER_DATA', 'user_data');
+define('SESSION_KEY_SESSION_DATA', 'session_data');
 
 define('CONTENTTYPE_HEADER_JSON', 'application/json; charset=UTF-8');
 define('CONTENTTYPE_HEADER_JS', 'application/javascript; charset=utf-8');
