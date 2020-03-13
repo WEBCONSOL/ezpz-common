@@ -66,5 +66,104 @@ define('SENDGRID_FROM_NAME', 'Ezpizee Team');
 // disable direct access to index.php
 if(strpos($_SERVER['REQUEST_URI'], '/index.php') !== false) {
     header(HEADER_CONTENTTYPE.CONTENTTYPE_HEADER_JSON);
-    die(file_get_contents(__DIR__.DS.'static'.DS.'json'.DS.'403.json'));
+    die(file_get_contents(PATH_COMMON_STATIC.DS.'json'.DS.'403.json'));
+}
+
+define('HOST_PATTERN_1', '/(.[^-]*)-(.[^-]*)-(.[^.]*).ezpizee.com/');
+define('HOST_PATTERN_2', '/(.[^-]*)-(.[^.]*).ezpizee.com/');
+define('HOST_PATTERN_3', '/(.[^.]*).ezpizee.com/');
+$subject = $_SERVER['HTTP_HOST'];
+$matches = array();
+$results = array();
+
+$matches = \WC\Utilities\PregUtil::getMatches(HOST_PATTERN_1, $subject);
+
+if (sizeof($matches) === 4 && $matches[0][0] === $subject)
+{
+    for($i = 1; $i < sizeof($matches); $i++) {
+        if (is_array($matches[$i]) && !empty(end($matches[$i]))) {
+            $results[] = end($matches[$i]);
+        }
+        else if (is_string($matches[$i]) && !empty($matches[$i])) {
+            $results[] = $matches[$i];
+        }
+    }
+}
+else
+{
+    $matches = \WC\Utilities\PregUtil::getMatches(HOST_PATTERN_2, $subject);
+    if (sizeof($matches) === 3 && is_array($matches[0]) && isset($matches[0][0]) && $matches[0][0] === $subject) {
+        for($i = 1; $i < sizeof($matches); $i++) {
+            if (is_array($matches[$i]) && !empty(end($matches[$i]))) {
+                $results[] = end($matches[$i]);
+            }
+            else if (is_string($matches[$i]) && !empty($matches[$i])) {
+                $results[] = $matches[$i];
+            }
+        }
+    }
+    else {
+        $matches = \WC\Utilities\PregUtil::getMatches(HOST_PATTERN_3, $subject);
+        if (sizeof($matches) === 2 && is_array($matches[0]) && isset($matches[0][0]) && $matches[0][0] === $subject) {
+            for($i = 1; $i < sizeof($matches); $i++) {
+                if (is_array($matches[$i]) && !empty(end($matches[$i]))) {
+                    $results[] = end($matches[$i]);
+                }
+                else if (is_string($matches[$i]) && !empty($matches[$i])) {
+                    $results[] = $matches[$i];
+                }
+            }
+        }
+    }
+}
+
+$sizeOfResults = sizeof($results);
+
+if ($sizeOfResults === 3 && in_array($results[0], \Ezpz\Common\ApiGateway\Env::ENVS))
+{
+    define('EZPZ_USERNAME', $results[1]);
+    define('EZPZ_SITE', $results[2]);
+}
+else
+{
+    $req = new \WC\Utilities\Request();
+
+    if ($sizeOfResults === 2 && in_array($results[0], \Ezpz\Common\ApiGateway\Env::ENVS))
+    {
+        if (in_array($results[0], \Ezpz\Common\ApiGateway\Env::ENVS))
+        {
+            define('EZPZ_USERNAME', $req->getHeaderParam(HEADER_USER_NAME, ''));
+            define('EZPZ_SITE', $results[1]);
+        }
+        else
+        {
+            define('EZPZ_USERNAME', $req->getHeaderParam(HEADER_USER_NAME, ''));
+            define('EZPZ_SITE', $results[1]);
+        }
+    }
+    else if ($sizeOfResults === 1)
+    {
+        define('EZPZ_USERNAME', $req->getHeaderParam(HEADER_USER_NAME, ''));
+        define('EZPZ_SITE', $results[0]);
+    }
+    else
+    {
+        define('EZPZ_USERNAME', '');
+        define('EZPZ_SITE', '');
+    }
+}
+
+unset($subject, $matches, $results);
+
+define('EZPZ_ENV', \Ezpz\Common\Utilities\Envariable::environment());
+
+if (EZPZ_ENV)
+{
+    define('EZPZ_ENV_IS_LOCAL', EZPZ_ENV === \Ezpz\Common\ApiGateway\Env::ENVS[0]);
+    define('EZPZ_ENV_IS_DEV', EZPZ_ENV === \Ezpz\Common\ApiGateway\Env::ENVS[1]);
+    define('EZPZ_ENV_IS_QA', EZPZ_ENV === \Ezpz\Common\ApiGateway\Env::ENVS[2]);
+    define('EZPZ_ENV_IS_STG', EZPZ_ENV === \Ezpz\Common\ApiGateway\Env::ENVS[3]);
+    define('EZPZ_ENV_IS_PROD', EZPZ_ENV === \Ezpz\Common\ApiGateway\Env::ENVS[4]);
+    define('SERVER_SCHEMA', 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://');
+    define('EZPZ_APP_SALT', md5(SALT_SFX));
 }
