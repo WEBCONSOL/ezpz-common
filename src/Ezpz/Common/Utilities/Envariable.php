@@ -16,6 +16,7 @@ final class Envariable
     public static function serviceEntity() {return self::get('EZPZ_SERVICE_ENTITY');}
     public static function serviceForceConfig() {return self::get('EZPZ_SERVICE_FORCECONFIG');}
     public static function serviceNameSpacePfx() {return self::get('EZPZ_SERVICE_NAMESPACEPFX');}
+    public static function isPostmanMode(): bool {return self::get('EZPZ_POSTMAN_MODE')==='1';}
     public static function getDBCredentials(): array {
         self::load($_SERVER['DOCUMENT_ROOT'].DS.'.env');
         if (isset(self::$ENV['EZPZ_DB_HOST'])) {

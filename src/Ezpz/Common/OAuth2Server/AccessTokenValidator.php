@@ -4,6 +4,7 @@ namespace Ezpz\Common\OAuth2Server;
 
 use Ezpz\Common\ApiGateway\Endpoints;
 use Ezpz\Common\Security\Jwt;
+use Ezpz\Common\Utilities\Envariable;
 use WC\Utilities\CustomResponse;
 use Slim\App;
 use Pimple\Container;
@@ -34,7 +35,7 @@ class AccessTokenValidator
         $token = $request->getHeaderLine(HEADER_ACCESS_TOKEN);
         self::processToken($token);
         if (!self::$appName) {self::$appName = $request->getHeaderLine(HEADER_APP_NAME);}
-        if (POSTMAN_MODE && self::$appName === 'Ezpizee Postman') {self::$appName = null;}
+        if (Envariable::isPostmanMode() && self::$appName === 'Ezpizee Postman') {self::$appName = null;}
 
         if (!empty(self::$accessToken))
         {
@@ -63,7 +64,7 @@ class AccessTokenValidator
         $token = $request->getHeaderParam(HEADER_ACCESS_TOKEN);
         self::processToken($token);
         if (!self::$appName) {self::$appName = $request->getHeaderLine('App-Name');}
-        if (POSTMAN_MODE && self::$appName === 'Ezpizee Postman') {self::$appName = null;}
+        if (Envariable::isPostmanMode() && self::$appName === 'Ezpizee Postman') {self::$appName = null;}
 
         if (!empty(self::$accessToken))
         {
@@ -123,7 +124,7 @@ class AccessTokenValidator
     }
 
     private static function processToken(string $token) {
-        if ((!POSTMAN_MODE && $token) || strlen($token) > 40) {
+        if ((!Envariable::isPostmanMode() && $token) || strlen($token) > 40) {
             $jwtToken = Jwt::decryptToken($token);
             if (!Jwt::verifyClientRequestToken($jwtToken, $jwtToken->appName)) {
                 CustomResponse::render(500, 'Invalid JWT Token from Client');
@@ -131,7 +132,7 @@ class AccessTokenValidator
             self::$accessToken = $jwtToken->access_token;
             self::$appName = $jwtToken->appName;
         }
-        else if (POSTMAN_MODE) {
+        else if (Envariable::isPostmanMode()) {
             self::$accessToken = $token;
         }
     }

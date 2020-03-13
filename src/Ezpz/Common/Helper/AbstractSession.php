@@ -4,6 +4,7 @@ namespace Ezpz\Common\Helper;
 
 use Ezpz\Common\ApiGateway\Endpoints;
 use Doctrine\ORM\EntityManager;
+use Ezpz\Common\Utilities\Envariable;
 use Slim\Http;
 use Ezpz\Common\Utilities\HostNames;
 use Ezpz\Common\Utilities\HttpClient;
@@ -68,7 +69,7 @@ abstract class AbstractSession extends AbstractApiContextProcessor
     {
         if ($this->jwtAccessToken && $this->clientSID)
         {
-            if (POSTMAN_MODE) {
+            if (Envariable::isPostmanMode()) {
                 $this->accessToken = $this->jwtAccessToken;
             }
             else {

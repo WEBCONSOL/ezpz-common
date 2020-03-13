@@ -4,6 +4,7 @@ namespace Ezpz\Common\Helper;
 
 use Doctrine\ORM\EntityManager;
 use Ezpz\Common\Repository\DataService;
+use Ezpz\Common\Utilities\Envariable;
 use Ezpz\Common\Utilities\Request;
 use Ezpz\Common\Security\Jwt;
 use Ezpz\Common\Security\Token;
@@ -82,7 +83,7 @@ abstract class AbstractApiContextProcessor
     public final function setResponseElement(string $key, $value) {$this->response[$key] = $value;}
 
     protected final function validateJwtTokenOnRequestForAccessToken() {
-        if (!POSTMAN_MODE) {
+        if (!Envariable::isPostmanMode()) {
             $this->jwtToken = $this->request->getHeaderLine(Jwt::HEADER_TOKEN_NAME);
             if (!$this->jwtToken) {
                 Logger::error('jwt_token. Invalid JWT-Token data (0)');
