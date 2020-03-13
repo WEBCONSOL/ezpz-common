@@ -2,11 +2,11 @@
 
 namespace Ezpz\Common\Helper;
 
-use Ezpz\Common\ApiGateway\Endpoints;
-use Ezpz\Common\Repository\DataService;
-use Ezpz\Common\Repository\DBTableConstants;
-use Ezpz\Common\Utilities\HostNames;
-use Ezpz\Common\Utilities\HttpClient;
+use \Ezpz\Common\ApiGateway\Endpoints;
+use \Ezpz\Common\Repository\DataService;
+use \Ezpz\Common\Repository\DBTableConstants;
+use \Ezpz\Common\Utilities\HostNames;
+use \Ezpz\Common\Utilities\HttpClient;
 
 final class CartHelper
 {

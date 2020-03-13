@@ -2,8 +2,8 @@
 
 namespace Ezpz\Common\Payment\Models;
 
-use Ezpz\Common\Payment\Helpers\JSONObject;
-use Ezpz\Common\Payment\Services\PaymentApiKeyInterface;
+use \Ezpz\Common\Payment\Helpers\JSONObject;
+use \Ezpz\Common\Payment\Services\PaymentApiKeyInterface;
 
 class PayPalPaymentApiKey implements PaymentApiKeyInterface
 {

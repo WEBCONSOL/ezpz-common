@@ -2,8 +2,8 @@
 
 namespace Ezpz\Common\Helper;
 
-use Ezpz\Common\Repository\DataService;
-use Ezpz\Common\Repository\DBTableConstants;
+use \Ezpz\Common\Repository\DataService;
+use \Ezpz\Common\Repository\DBTableConstants;
 use WC\Utilities\DateTimeFormat;
 use WC\Utilities\EncodingUtil;
 use WC\Utilities\Logger;

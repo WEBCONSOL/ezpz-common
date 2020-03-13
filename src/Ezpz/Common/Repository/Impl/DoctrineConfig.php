@@ -2,13 +2,13 @@
 
 namespace Ezpz\Common\Repository\Impl;
 
-use Ezpz\Common\Security\InternalJWT;
-use Ezpz\Common\Utilities\Envariable;
+use \Ezpz\Common\Security\InternalJWT;
+use \Ezpz\Common\Utilities\Envariable;
 use WC\Utilities\CustomResponse;
 use Doctrine\DBAL\DBALException;
-use Ezpz\Common\Repository\DbConfigInterface;
-use Ezpz\Common\Utilities\HostNames;
-use Ezpz\Common\Utilities\HttpClient;
+use \Ezpz\Common\Repository\DbConfigInterface;
+use \Ezpz\Common\Utilities\HostNames;
+use \Ezpz\Common\Utilities\HttpClient;
 use WC\Models\ListModel;
 use WC\Utilities\EncodingUtil;
 use WC\Utilities\Logger;

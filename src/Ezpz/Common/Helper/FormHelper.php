@@ -2,7 +2,7 @@
 
 namespace Ezpz\Common\Helper;
 
-use Ezpz\Common\Repository\DataService;
+use \Ezpz\Common\Repository\DataService;
 
 class FormHelper
 {

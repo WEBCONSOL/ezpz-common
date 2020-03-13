@@ -2,16 +2,16 @@
 
 namespace Ezpz\Common\OAuth2Server;
 
-use Ezpz\Common\ApiGateway\Endpoints;
-use Ezpz\Common\Security\Jwt;
-use Ezpz\Common\Utilities\Envariable;
+use \Ezpz\Common\ApiGateway\Endpoints;
+use \Ezpz\Common\Security\Jwt;
+use \Ezpz\Common\Utilities\Envariable;
 use WC\Utilities\CustomResponse;
 use Slim\App;
 use Pimple\Container;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Ezpz\Common\Utilities\HostNames;
-use Ezpz\Common\Utilities\HttpClient;
+use \Ezpz\Common\Utilities\HostNames;
+use \Ezpz\Common\Utilities\HttpClient;
 use WC\Utilities\Logger;
 
 class AccessTokenValidator
@@ -60,7 +60,7 @@ class AccessTokenValidator
     public static function validate(Container $cnt): bool {
 
         $valid = false;
-        $request = new Ezpz\Common\Utilities\Request();
+        $request = new \Ezpz\Common\Utilities\Request();
         $token = $request->getHeaderParam(HEADER_ACCESS_TOKEN);
         self::processToken($token);
         if (!self::$appName) {self::$appName = $request->getHeaderLine('App-Name');}

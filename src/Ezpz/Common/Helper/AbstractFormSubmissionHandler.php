@@ -2,15 +2,15 @@
 
 namespace Ezpz\Common\Helper;
 
-use Ezpz\Common\ApiGateway\Endpoints;
-use Ezpz\Common\KafkaService\Constants;
-use Ezpz\Common\KafkaService\Producer;
-use Ezpz\Common\OAuth2Server\AccessTokenValidator;
-use Ezpz\Common\Utilities\HostNames;
-use Ezpz\Common\Utilities\HttpClient;
+use \Ezpz\Common\ApiGateway\Endpoints;
+use \Ezpz\Common\KafkaService\Constants;
+use \Ezpz\Common\KafkaService\Producer;
+use \Ezpz\Common\OAuth2Server\AccessTokenValidator;
+use \Ezpz\Common\Utilities\HostNames;
+use \Ezpz\Common\Utilities\HttpClient;
 use WC\Models\ListModel;
 use WC\Models\UserModel;
-use Ezpz\Common\Security\Jwt;
+use \Ezpz\Common\Security\Jwt;
 use WC\Utilities\CustomResponse;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;

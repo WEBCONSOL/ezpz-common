@@ -2,15 +2,15 @@
 
 namespace Ezpz\Common\Helper;
 
-use Ezpz\Common\ApiGateway\Endpoints;
+use \Ezpz\Common\ApiGateway\Endpoints;
 use Doctrine\ORM\EntityManager;
-use Ezpz\Common\Utilities\Envariable;
+use \Ezpz\Common\Utilities\Envariable;
 use Slim\Http;
-use Ezpz\Common\Utilities\HostNames;
-use Ezpz\Common\Utilities\HttpClient;
+use \Ezpz\Common\Utilities\HostNames;
+use \Ezpz\Common\Utilities\HttpClient;
 use WC\Models\ListModel;
 use WC\Models\SessionModel;
-use Ezpz\Common\Security\Jwt;
+use \Ezpz\Common\Security\Jwt;
 use WC\Utilities\DateTimeFormat;
 use WC\Utilities\EncodingUtil;
 

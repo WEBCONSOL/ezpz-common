@@ -6,13 +6,13 @@ use SquareConnect\Configuration;
 use SquareConnect\Api\TransactionsApi;
 use SquareConnect\ApiException;
 
-use Ezpz\Common\Payment\Helpers\JSONObject;
-use Ezpz\Common\Payment\Models\OrderItem;
-use Ezpz\Common\Payment\Models\OrderItems;
-use Ezpz\Common\Payment\Models\CreditCard as EzpzCreditCard;
-use Ezpz\Common\Payment\Models\PaymentTypes;
-use Ezpz\Common\Payment\Models\SquarePaymentApiKey;
-use Ezpz\Common\Payment\Services\PaymentServiceInterface;
+use \Ezpz\Common\Payment\Helpers\JSONObject;
+use \Ezpz\Common\Payment\Models\OrderItem;
+use \Ezpz\Common\Payment\Models\OrderItems;
+use \Ezpz\Common\Payment\Models\CreditCard as EzpzCreditCard;
+use \Ezpz\Common\Payment\Models\PaymentTypes;
+use \Ezpz\Common\Payment\Models\SquarePaymentApiKey;
+use \Ezpz\Common\Payment\Services\PaymentServiceInterface;
 use WC\Utilities\CustomResponse;
 use WC\Utilities\Logger;
 

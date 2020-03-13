@@ -2,7 +2,7 @@
 
 namespace Ezpz\Common\KafkaService;
 
-use Ezpz\Common\ApiGateway\Env;
+use \Ezpz\Common\ApiGateway\Env;
 
 final class Constants
 {

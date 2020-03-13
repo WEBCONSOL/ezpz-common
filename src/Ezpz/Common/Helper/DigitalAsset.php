@@ -2,14 +2,14 @@
 
 namespace Ezpz\Common\Helper;
 
-use Ezpz\Common\ApiGateway\Env;
+use \Ezpz\Common\ApiGateway\Env;
 use WC\Utilities\CustomResponse;
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManager;
-use Ezpz\Common\FileSystem\InterfaceFileSystem;
-use Ezpz\Common\Repository\DBTableConstants;
-use Ezpz\Common\Utilities\Request;
-use Ezpz\Common\Utilities\HostNames;
+use \Ezpz\Common\FileSystem\InterfaceFileSystem;
+use \Ezpz\Common\Repository\DBTableConstants;
+use \Ezpz\Common\Utilities\Request;
+use \Ezpz\Common\Utilities\HostNames;
 use WC\Utilities\EncodingUtil;
 use WC\Utilities\FileUtil;
 use WC\Utilities\Logger;

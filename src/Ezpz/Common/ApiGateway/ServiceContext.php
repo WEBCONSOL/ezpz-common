@@ -2,12 +2,12 @@
 
 namespace Ezpz\Common\ApiGateway;
 
-use Ezpz\Common\Repository\Impl\DoctrineConfig;
-use Ezpz\Common\Utilities\Envariable;
+use \Ezpz\Common\Repository\Impl\DoctrineConfig;
+use \Ezpz\Common\Utilities\Envariable;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Ezpz\Common\SharedServiceProvider\Doctrine;
-use Ezpz\Common\Utilities\HttpClient;
+use \Ezpz\Common\SharedServiceProvider\Doctrine;
+use \Ezpz\Common\Utilities\HttpClient;
 use WC\Models\ListModel;
 use WC\Utilities\CustomResponse;
 use WC\Utilities\EncodingUtil;

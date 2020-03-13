@@ -4,9 +4,9 @@ namespace Ezpz\Common\Repository;
 
 use Doctrine\DBAL\DBALException;
 use Doctrine\ORM\EntityManager;
-use Ezpz\Common\Helper\DigitalAsset;
-use Ezpz\Common\Helper\StoreHelper;
-use Ezpz\Common\Security\Token;
+use \Ezpz\Common\Helper\DigitalAsset;
+use \Ezpz\Common\Helper\StoreHelper;
+use \Ezpz\Common\Security\Token;
 use WC\Utilities\EncodingUtil;
 use WC\Utilities\Logger;
 use WC\Utilities\DateTimeFormat;

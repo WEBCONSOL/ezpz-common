@@ -3,7 +3,7 @@
 namespace Ezpz\Common\Repository;
 
 use WC\Models\ListModel;
-use Ezpz\Common\Repository\DBTableConstants;
+use \Ezpz\Common\Repository\DBTableConstants;
 
 class ProductService
 {

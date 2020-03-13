@@ -2,7 +2,7 @@
 
 namespace Ezpz\Common\Payment\Models;
 
-use Ezpz\Common\Payment\Lib\CreditCardValidator;
+use \Ezpz\Common\Payment\Lib\CreditCardValidator;
 
 class CreditCard
 {

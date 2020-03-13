@@ -2,7 +2,7 @@
 
 namespace Ezpz\Common\Payment\Models;
 
-use Ezpz\Common\Helper\Type;
+use \Ezpz\Common\Helper\Type;
 
 class OrderItem
 {

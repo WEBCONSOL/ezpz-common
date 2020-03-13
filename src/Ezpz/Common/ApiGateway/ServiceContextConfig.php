@@ -2,7 +2,7 @@
 
 namespace Ezpz\Common\ApiGateway;
 
-use Ezpz\Common\Utilities\Envariable;
+use \Ezpz\Common\Utilities\Envariable;
 use WC\Models\ListModel;
 
 class ServiceContextConfig {
