@@ -15,32 +15,12 @@ final class HttpClient
 
     public static function request($method, $url, array $options = array()): Response
     {
-        $client = new Client();
-
-        if (StringUtil::startsWith($url, 'https://'))
-        {
-            if (!isset($options['verify'])) {
-                //TODO: temporary disabled SSL verify path PATH_COMMON_STATIC . "/ssl-cert/".EZPZ_ENV."-cacert.pem";
-                $options['verify'] = false;
-            }
-            try {
-                return $client->request($method, $url, $options);
-            }
-            catch (GuzzleException $e) {
-                self::terminate($e);
-            }
-        }
-        else
-        {
-            try {
-                return $client->request($method, $url, $options);
-            }
-            catch (GuzzleException $e) {
-                self::terminate($e);
-            }
+        $response = (new Client())->request($method, str_replace('local-auth.ezpizee.com', 'cache-proxy', $url), $options);
+        if ($response === null) {
+            $response = new Response();
         }
 
-        return new Response();
+        return $response;
     }
 
     public static function internalRequest($method, $url, array $options = array()): Response
